@@ -1,0 +1,45 @@
+trainer:
+  loss: WeightCrossEntropyLoss
+  metrics:
+  - accuracy
+  - f1_macro
+  - auc
+  epochs: 40
+  scoring_metric: auc
+  lr: 0.0001
+  weight_decay: 0.0001
+dataset:
+  data_path: /data/alpha_test/alpha_test.csv
+  batch_size: 256
+  min_len: 1
+  seq_len: 250
+  TARGET: flag
+  categorical:
+  - currency
+  - operation_kind
+  - card_type
+  - operation_type
+  - operation_type_group
+  - ecommerce_flag
+  - payment_system
+  - income_flag
+  - mcc
+  - country
+  - city
+  - mcc_category
+  - day_of_week
+  - hour
+  - days_before
+  - weekofyear
+  - hour_diff
+  - product
+  continious:
+  - amnt
+  main_index: app_id
+  val_portion: 0.3
+  time_index: transaction_number
+model:
+  hidden_size: 64
+  output_size: 2
+  embeddings_hidden: 8
+  augmentations: Augmentation

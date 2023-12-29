@@ -1,0 +1,52 @@
+search_method:
+  name: Hyperband
+  params:
+    max_total_epochs: 500
+    max_epochs_per_arch: 10
+    epochs_growth_factor: 2
+trainer:
+  loss: WeightCrossEntropyLoss
+  metrics:
+  - accuracy
+  - f1_macro
+  - auc
+  epochs: 5
+  scoring_metric: auc
+  optimizer: FUSEDLAMB
+  optim_params:
+    lr: 0.01
+    weight_decay: 0.0001
+  use_amp: true
+dataset:
+  dataset_type: WebSequenceDataset
+  data_path: /data/vtb/vtb_trans_log_scaled.csv.zip
+  batch_size: 128
+  dataset_params:
+    index_columns:
+    - user_id
+    sort_columns:
+    - transaction_dttm
+    target_column: higher_education
+    classification: true
+    categorical_columns:
+    - mcc_code
+    - currency_rk
+    numerical_columns:
+    - transaction_amt
+    seq_len_limit: 512
+    seq_len_trunc_type: last
+    min_partition_num: 1
+    partition_size_mbytes: 64
+    split_sizes:
+      test: 0.15
+      train: 0.7
+      val: 0.15
+    seed: 42
+model_name: FlexibleTransformer
+model:
+  hidden_size: 64
+  output_size: 2
+  embeddings_hidden: 32
+  augmentations: None
+  dropout: 0.3
+  tricks: choice

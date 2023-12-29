@@ -1,0 +1,14 @@
+.vscode
+*.pyc
+*.swp
+/data
+__pycache__/
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+output/
+experiments/
+!examples/sample_configs/experiments
+.*/
+catboos*/
+configs/
+/dev/

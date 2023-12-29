@@ -1,0 +1,52 @@
+# default sampler; available: [TPESampler, RandomSampler, CmaEsSampler, ...]
+# see documentation: https://optuna.readthedocs.io/en/stable/index.html
+sampler_method: TPESampler
+
+# hyperparams for tuning
+hyperparams:
+  train_params:
+    batch_size:
+      trial_method: suggest_categorical
+      trial_method_params:
+        choices: [ 256, 128 ]
+    optimizer:
+      trial_method: suggest_categorical
+      trial_method_params:
+        choices: ['FUSEDADAM','FUSEDLAMB'] 
+    optimizer_params:
+      lr:
+        trial_method: suggest_float
+        trial_method_params:
+          low: 1e-5 
+          high: 1e-2
+      weight_decay:
+        trial_method: suggest_categorical
+        trial_method_params:
+          choices: [ 1e-4 ]
+      beta1:
+        trial_method: suggest_float
+        trial_method_params:
+          low: 0.7
+          high: 0.9
+  model_params:
+    hidden_size:
+      trial_method: suggest_categorical
+      trial_method_params:
+        choices: [ 32, 64 ]
+    num_embeddings_hidden:
+      trial_method: suggest_categorical
+      trial_method_params:
+        choices: [ 8, 16 ]
+    embeddings_hidden:
+      trial_method: suggest_categorical
+      trial_method_params:
+        choices: [ 8, 16 ]
+    dropout:
+      trial_method: suggest_float
+      trial_method_params:
+        low: 0.0 
+        high: 0.7
+    augmentations:
+      trial_method: suggest_categorical
+      trial_method_params:
+        choices: [ None ]

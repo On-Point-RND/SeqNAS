@@ -1,0 +1,10 @@
+initial_step: 100
+candidates_to_seed: 100
+candidates_per_step: 15
+predictor_objective: MAE
+acquisition_function: ITS
+predictor_ensembles: 5
+predictor_iters: 100
+predictor_lr: 0.01
+candidate_generation: 
+    type: random

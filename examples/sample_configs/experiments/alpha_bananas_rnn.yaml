@@ -1,0 +1,49 @@
+search_method:
+  name: Bananas
+  params:
+    num_trials: 40
+    computed_arches_dir: null
+    bananas_config: "/home/dev/examples/sample_configs/bananas.yaml"
+trainer:
+  loss: "WeightCrossEntropyLoss"
+  metrics: [ "accuracy", "f1_macro","auc" ]
+  epochs: 5
+  scoring_metric: "auc"
+  optimizer: "FUSEDLAMB"
+  optim_params:
+    lr: 0.01
+    weight_decay: 0.0001
+  use_amp: true
+dataset:
+  dataset_type: "WebSequenceDataset"
+  data_path: '/data/alpha/alpha.csv.zip'
+  batch_size:  256
+  dataset_params:
+    index_columns: ["app_id"]
+    sort_columns: ["transaction_number"]
+    target_column:  "flag"
+    classification: true
+    categorical_columns: [ 'currency', 'operation_kind', 'card_type',
+                   'operation_type', 'operation_type_group', 'ecommerce_flag',
+                   'payment_system', 'income_flag', 'mcc', 'country', 'city',
+                   'mcc_category', 'day_of_week', 'hour', 'weekofyear',
+                   'product' ]
+    numerical_columns:  ["amnt", "hour_diff", "days_before"]
+    seq_len_limit: 250
+    seq_len_trunc_type: "last"
+    min_partition_num: 4
+    partition_size_mbytes: 64
+    split_sizes:
+      test: 0.15
+      train: 0.7
+      val: 0.15
+    seed: 42
+model_name: SearchableRNN
+model:
+  hidden_size: 32
+  output_size: 2
+  embeddings_hidden: 32
+  num_embeddings_hidden: 32
+  dense_dim: 2
+  hidden_tuple_size: [3, 5, 7]
+  intermediate_vertices: [7, 14, 21]

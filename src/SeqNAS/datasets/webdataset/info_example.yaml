@@ -1,0 +1,21 @@
+categorical_cardinality:
+- 341
+- 5
+categorical_columns:
+- mcc_code
+- currency_rk
+dataset_dir: /content/drive/MyDrive/NAS_project/NAS/data/education_preprocessed_2/
+emb_hidden: 32
+hidden_size: 256
+numerical_columns:
+- transaction_amt
+output_size: 2
+seq_len: 800
+target_cardinality: 2
+target_column: higher_education
+test_dataset: test/part-{00000..00003}-0f4a43ad-cff3-4665-86d5-7da59c5e5284-c000.snappy.parquet
+test_length: 1699
+train_dataset: train/part-{00000..00003}-a0481b7b-80d2-4b85-a45f-49440f6b9fb5-c000.snappy.parquet
+train_length: 5936
+val_dataset: val/part-{00000..00003}-53af90f3-10ec-4d03-bc6b-720f7081b0bf-c000.snappy.parquet
+val_length: 874

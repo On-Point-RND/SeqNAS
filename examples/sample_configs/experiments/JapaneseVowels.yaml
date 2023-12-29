@@ -1,0 +1,61 @@
+search_method:
+  name: Bananas
+  params:
+    num_trials: 30
+    computed_arches_dir: null
+    bananas_config: /rnas/examples/sample_configs/bananas.yaml
+trainer:
+  loss: WeightCrossEntropyLoss
+  metrics:
+  - accuracy
+  epochs: 20
+  scoring_metric: accuracy
+  optimizer: FUSEDLAMB
+  optim_params:
+    lr: 0.001
+    weight_decay: 0.0001
+  use_amp: false
+dataset:
+  dataset_type: WebSequenceDataset
+  data_path: /data/JapaneseVowels/JapaneseVowels_TRAIN.parquet
+  batch_size: 16
+  dataset_params:
+    test_dataset: /data/JapaneseVowels/JapaneseVowels_TEST.parquet
+    index_columns:
+    - id
+    sort_columns:
+    - time
+    target_column: target
+    classification: true
+    categorical_columns: []
+    numerical_columns:
+    - dim_0
+    - dim_1
+    - dim_2
+    - dim_3
+    - dim_4
+    - dim_5
+    - dim_6
+    - dim_7
+    - dim_8
+    - dim_9
+    - dim_10
+    - dim_11
+    seq_len_limit: 29
+    seq_len_trunc_type: last
+    min_partition_num: 1
+    partition_size_mbytes: 128
+    split_sizes:
+      test: 0.0
+      train: 0.8
+      val: 0.2
+    seed: 42
+model_name: FlexibleTransformer
+model:
+  hidden_size: 16
+  output_size: 9
+  embeddings_hidden: 0
+  num_embeddings_hidden: 16
+  augmentations: None
+  dropout: 0.3
+  tricks: choice

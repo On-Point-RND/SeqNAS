@@ -1,0 +1,25 @@
+services:
+  jupyter-server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: rnas:v1.3.0
+    ports:
+      - "${JL_PORT:-34500}:8888"
+      - "${TB_PORT:-34501}:6006"
+    volumes:
+      - ${DATA_PATH}:/data
+      - ${ROOT_PATH}:/rnas
+    ipc: host
+    runtime: nvidia
+    memswap_limit: ${MEM_LIMIT:-64gb}
+    deploy:
+      resources:
+        limits:
+          cpus: ${N_CPU:-16}
+          memory: ${MEM_LIMIT:-64gb}
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+              driver: nvidia
+    command: bash

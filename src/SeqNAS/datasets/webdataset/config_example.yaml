@@ -1,0 +1,25 @@
+categorical_columns: [mcc_code, currency_rk]
+classification: true
+export_index_name: prepro_user_id
+index_columns:
+- user_id
+local_path: /content/drive/MyDrive/NAS_project/NAS/data/
+min_partition_num: 4
+numerical_columns: [transaction_amt]
+partition_size_mbytes: 64
+save_path: /content/drive/MyDrive/NAS_project/NAS/data/
+seed: 42
+seq_len_limit: 800
+seq_len_trunc_type: last
+skip_columns: [bank]
+sort_columns:
+- transaction_dttm
+split_sizes:
+  test: 0.2
+  train: 0.7
+  val: 0.1
+target_column: higher_education
+test_dataset: null
+train_dataset:  /content/drive/MyDrive/NAS_project/NAS/data/full_data.parquet
+val_dataset: null
+

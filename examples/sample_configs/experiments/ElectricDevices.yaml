@@ -1,0 +1,51 @@
+search_method:
+  name: Bananas
+  params:
+    num_trials: 20
+    computed_arches_dir: null
+    bananas_config: /rnas/examples/sample_configs/bananas.yaml
+trainer:
+  loss: WeightCrossEntropyLoss
+  metrics:
+  - accuracy
+  - f1_macro
+  epochs: 10
+  scoring_metric: accuracy
+  optimizer: FUSEDLAMB
+  optim_params:
+    lr: 0.001
+    weight_decay: 0.001
+  use_amp: false
+dataset:
+  dataset_type: WebSequenceDataset
+  data_path: /data/ElectricDevices/ElectricDevices_TRAIN.parquet
+  batch_size: 128
+  dataset_params:
+    test_dataset: /data/ElectricDevices/ElectricDevices_TEST.parquet
+    index_columns:
+    - id
+    sort_columns:
+    - time
+    target_column: target
+    classification: true
+    categorical_columns: []
+    numerical_columns:
+    - dim_0
+    seq_len_limit: 96
+    seq_len_trunc_type: last
+    min_partition_num: 1
+    partition_size_mbytes: 128
+    split_sizes:
+      test: 0.0
+      train: 0.8
+      val: 0.2
+    seed: 42
+model_name: FlexibleTransformer
+model:
+  hidden_size: 32
+  output_size: 7
+  embeddings_hidden: 0
+  num_embeddings_hidden: 32
+  augmentations: None
+  dropout: 0.1
+  tricks: choice
