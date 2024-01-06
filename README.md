@@ -32,5 +32,5 @@ docker-compose build && docker-compose up
 ```
 
 ## Datasets
-Our datasets are available [here](https://disk.yandex.ru/d/N2TzBBTo8Ac7lQ).
+Our datasets are available [here](https://disk.yandex.ru/d/N2TzBBTo8Ac7lQ). A dataset with evaluated architectures is [here](nas-bench-event-sequences.zip).
 
