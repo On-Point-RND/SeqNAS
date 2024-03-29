@@ -1,4 +1,18 @@
-## 
+This is the official PyTorch implementation of the IEEE Acccess (2024) paper [SeqNAS: Neural Architecture Search for Event Sequence Classification](https://ieeexplore.ieee.org/abstract/document/10379671). Citation:
+```bibtex
+@ARTICLE{udovichenko2024seqnas,
+  author={Udovichenko, Igor and Shvetsov, Egor and Divitsky, Denis and Osin, Dmitry and Trofimov, Ilya and Sukharev, Ivan and Glushenko, Anatoliy and Berestnev, Dmitry and Burnaev, Evgeny},
+  journal={IEEE Access}, 
+  title={SeqNAS: Neural Architecture Search for Event Sequence Classification}, 
+  year={2024},
+  volume={12},
+  number={},
+  pages={3898-3909},
+  keywords={Computer architecture;Task analysis;Benchmark testing;Training;DNA;Artificial neural networks;Transformers;Event detection;Knowledge management;NAS;temporal point processes;event sequences;RNN;transformers;knowledge distillation;surrogate models},
+  doi={10.1109/ACCESS.2024.3349497}
+}
+```
+
 ## Contents:
 - [Usage examples](./examples/README.md)
     -  [Dataset preprocesssing](./examples/dataset_preprocess/README.md)
